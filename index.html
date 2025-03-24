@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบแบนผู้เล่น</title>
+    <script>
+        async function sendBanRequest(action) {
+            const playerName = document.getElementById("playerName").value;
+            if (!playerName) {
+                alert("กรุณากรอกชื่อผู้เล่น");
+                return;
+            }
+
+            const response = await fetch("https://your-api-url.com/ban", {  // แก้เป็น URL API จริง
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: playerName, action: action })
+            });
+
+            const result = await response.text();
+            alert(result);
+        }
+    </script>
+</head>
+<body>
+    <h2>ระบบแบนผู้เล่นใน Roblox</h2>
+    <input type="text" id="playerName" placeholder="กรอกชื่อผู้เล่น">
+    <button onclick="sendBanRequest('ban')">แบน</button>
+    <button onclick="sendBanRequest('unban')">ปลดแบน</button>
+</body>
+</html>
